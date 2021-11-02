@@ -15,8 +15,14 @@ function addMessage(message) {
     myMessage.save();
 }
 
-async function getMessages() {
-    return await Model.find();
+async function getMessages(filterMessage) {
+    let filter = {};
+    if(filterMessage == null) {
+        return await Model.find();
+    } else {
+        filter = { user: filterMessage };
+        return await Model.find(filter);
+    }
 }
 
 async function updateMessage(id, newMessage) {
@@ -28,6 +34,6 @@ async function updateMessage(id, newMessage) {
 
 module.exports = {
     add: addMessage,
-    getAll: getMessages,
+    get: getMessages,
     update: updateMessage
 }
