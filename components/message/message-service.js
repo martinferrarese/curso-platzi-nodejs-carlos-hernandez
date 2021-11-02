@@ -23,7 +23,20 @@ function getMessages() {
     })
 }
 
+function updateMessage(id, change) {
+    return new Promise((resolve, reject) => {
+        if(!id || !change){
+            console.log(`[message-service] - No contiene id o texto`);
+            return reject(`Los datos son incorrectos`);
+        } else {
+            const updatedMessage = storage.update(id, change);
+            return resolve(updatedMessage);
+        }
+    })
+}
+
 module.exports = {
     addMessage,
-    getMessages
+    getMessages,
+    updateMessage
 }

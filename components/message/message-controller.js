@@ -20,7 +20,17 @@ router.post('/', async (req, res) => {
         response.success(req, res, fullMessage, 200);
     }catch(error) {
         console.log(error);
-        response.failure(req, res, `[POST] Message - ${error} - No se pudo resolver el pedido`, 400);
+        response.failure(req, res, `[POST] Message - ${error} - No se pudo resolver el pedido`, 500);
+    }
+});
+
+router.patch('/:id', async (req, res) => {
+    try{
+        const updatedMessage = await service.updateMessage(req.params.id, req.body.message);
+        response.success(req, res, updatedMessage, 200);
+    } catch (error) {
+        console.log(error);
+        response.failure(req, res, `[PATCH] Message - ${error} - No se pudo actualizar el dato`, 500);
     }
 });
 
