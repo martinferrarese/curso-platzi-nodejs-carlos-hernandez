@@ -32,8 +32,15 @@ async function updateMessage(id, newMessage) {
     return modifiedMessage;
 }
 
+async function deleteMessage(id) {
+    filter = { _id: id };
+    const deletedMessage = await Model.deleteOne(filter);
+    return deletedMessage;
+}
+
 module.exports = {
     add: addMessage,
     get: getMessages,
-    update: updateMessage
+    update: updateMessage,
+    delete: deleteMessage
 }

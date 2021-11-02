@@ -20,7 +20,7 @@ function addMessage(user, message) {
 function getMessages(filterUser) {
     return new Promise((resolve, reject) => {
         resolve(storage.get(filterUser));
-    })
+    });
 }
 
 function updateMessage(id, change) {
@@ -32,11 +32,24 @@ function updateMessage(id, change) {
             const updatedMessage = storage.update(id, change);
             return resolve(updatedMessage);
         }
-    })
+    });
 }
+
+function deleteMessage(id) {
+    return new Promise((resolve, reject) => {
+        if(!id){
+            console.log(`[message-service] - No contiene id`);
+            return reject(`No se puede eliminar sin id`);
+        } else {
+            const deleted = storage.delete(id);
+            return resolve(id);
+        }
+    });
+};
 
 module.exports = {
     addMessage,
     getMessages,
-    updateMessage
+    updateMessage,
+    deleteMessage
 }
