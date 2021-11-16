@@ -41,8 +41,8 @@ function deleteMessage(id) {
             console.log(`[message-service] - No contiene id`);
             return reject(`No se puede eliminar sin id`);
         } else {
-            const deleted = storage.delete(id);
-            return resolve(id);
+            storage.delete(id);
+            return resolve(`${id} eliminado con éxito`);
         }
     });
 };
