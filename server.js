@@ -1,5 +1,8 @@
 const express = require('express');
 const router = require('./network/routes');
+const connectToDB = require('./db');
+
+connectToDB();
 
 var app = express();
 //Con esto puede manejar JSON

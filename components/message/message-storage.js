@@ -1,7 +1,5 @@
 const Model = require('./message-model');
 
-db.Promise = global.Promise;
-
 async function addMessage(message) {
     const myMessage = new Model(message);
     myMessage.save();
