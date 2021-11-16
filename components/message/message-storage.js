@@ -1,4 +1,3 @@
-const messageList = [];
 const db = require('mongoose');
 const Model = require('./message-model');
 
