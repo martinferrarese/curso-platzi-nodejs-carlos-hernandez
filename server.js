@@ -1,8 +1,10 @@
+require("dotenv").config({ path: ".env" });
 const express = require('express');
 const router = require('./network/routes');
 const connectToDB = require('./db');
+const uri = process.env.DBURL;
 
-connectToDB();
+connectToDB(uri);
 
 var app = express();
 //Con esto puede manejar JSON
