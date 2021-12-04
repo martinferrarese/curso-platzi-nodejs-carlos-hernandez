@@ -2,7 +2,7 @@ require("dotenv").config({ path: ".env" });
 const express = require('express');
 const router = require('./network/routes');
 const connectToDB = require('./db');
-const uri = process.env.DBURL;
+const uri = process.env.DBURI;
 
 connectToDB(uri);
 
