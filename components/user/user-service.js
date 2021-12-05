@@ -10,6 +10,17 @@ const addUser = (name) => {
     return storage.add(user);
 }
 
+const getUser = (nameFilter) => {
+    let filter = {};
+    if(nameFilter) {
+        filter = {
+            name: nameFilter
+        };
+    }
+    return storage.get(filter);
+}
+
 module.exports = {
     add: addUser,
+    get: getUser
 }
