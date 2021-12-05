@@ -13,7 +13,12 @@ async function getUser(nameFilter) {
     }
 }
 
+async function deleteUser(filter) {
+    return await UserModel.deleteOne(filter);
+}
+
 module.exports = {
     add: addUser,
     get: getUser,
+    delete: deleteUser,
 }

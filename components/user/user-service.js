@@ -20,7 +20,18 @@ const getUser = (nameFilter) => {
     return storage.get(filter);
 }
 
+function deleteUser(userId) {
+    return new Promise((resolve, reject) => {
+        if(!userId) {
+            reject('No se puede eliminar un usuario sin Id');
+        }
+        const userFilter = { _id: userId };
+        resolve(storage.delete(userFilter));
+    });
+}
+
 module.exports = {
     add: addUser,
-    get: getUser
+    get: getUser,
+    delete: deleteUser
 }

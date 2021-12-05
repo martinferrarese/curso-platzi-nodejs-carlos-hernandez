@@ -22,4 +22,13 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedUser = await service.delete(req.params.id);
+        response.success(req, res, deletedUser, 200);
+    } catch (error) {
+        response.failure(req, res, `[DELETE] User - ${error} - No se pudo resolver el pedido`, 500);
+    }
+});
+
 module.exports = router;
