@@ -1,11 +1,11 @@
 const UserModel = require("./user-model");
 
-const addUser = (user) => {
+async function addUser(user) {
     const myUser = new UserModel(user);
     return myUser.save();
 }
 
-const getUser = (nameFilter) => {
+async function getUser(nameFilter) {
     if(!nameFilter) {
         return userResult = UserModel.find();
     } else {
