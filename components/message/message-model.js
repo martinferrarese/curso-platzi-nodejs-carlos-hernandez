@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const messageSchema = new Schema({
     user: {
-        type: String,
-        required: true
+        type: Schema.ObjectId,
+        ref: 'User',
     },
     message: {
         type: String,
-        required: true
+        required: true,
     },
     date: Date,
 });
