@@ -17,4 +17,13 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    try {
+        const chats = await service.get(req.body.users);
+        response.success(req, res, chats, 200);
+    } catch (error) {
+        response.failure(req, res, `[GET] Chat - ${error} - No se pudo resolver el pedido`, 500);
+    }
+})
+
 module.exports = router;

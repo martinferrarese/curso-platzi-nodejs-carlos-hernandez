@@ -9,6 +9,17 @@ function addChat(users) {
     });
 }
 
+function getChat(users) {
+    return new Promise((resolve, reject) => {
+        let filter = {};
+        if(users) {
+            filter = { users };
+        }
+        resolve(storage.get(filter));
+    })
+}
+
 module.exports = {
     add: addChat,
+    get: getChat,
 }
