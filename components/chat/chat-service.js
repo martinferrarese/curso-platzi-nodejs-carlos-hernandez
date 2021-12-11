@@ -16,10 +16,17 @@ function getChat(users) {
             filter = { users };
         }
         resolve(storage.get(filter));
-    })
+    });
+}
+
+function deleteChat(id) {
+    return new Promise((resolve, reject) => {
+        resolve(storage.delete(id));
+    });
 }
 
 module.exports = {
     add: addChat,
     get: getChat,
+    delete: deleteChat,
 }

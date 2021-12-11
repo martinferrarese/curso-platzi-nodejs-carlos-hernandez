@@ -16,10 +16,17 @@ async function getChat(filter) {
                 resolve(populated);
             });
     });
+}
 
+async function deleteChat(id) {
+    return new Promise((resolve, reject) => {
+        const chatToDelete = ChatModel.findById(id);
+        resolve(ChatModel.deleteOne(chatToDelete));
+    });
 }
 
 module.exports = {
     add: addChat,
     get: getChat,
+    delete: deleteChat,
 }

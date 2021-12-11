@@ -24,6 +24,15 @@ router.get('/', async (req, res) => {
     } catch (error) {
         response.failure(req, res, `[GET] Chat - ${error} - No se pudo resolver el pedido`, 500);
     }
-})
+});
+
+router.delete('/:id', async (req, res) => {
+    try {
+        const chatDeleted = await service.delete(req.params.id);
+        response.success(req, res, chatDeleted, 200);
+    } catch (error) {
+        response.failure(req, res, `[DELETE] Chat - ${error} - No se pudo resolver el pedido`, 500);
+    }
+});
 
 module.exports = router;
