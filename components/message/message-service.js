@@ -1,14 +1,15 @@
 const storage = require('./message-storage');
 
-function addMessage(user, message) {
+function addMessage(chat, user, message) {
     return new Promise((resolve, reject) => {
-        if(!user || !message) {
-            console.log(`[message-service] - No contiene user o message`);
+        if(!chat || !user || !message) {
+            console.log(`[message-service] - No contiene chat, user o message`);
             reject(`Los datos son incorrectos`);
         } else {
             const fullMessage = {
-                user,
-                message,
+                chat: chat,
+                user: user,
+                message: message,
                 date: new Date(),
             };
             storage.add(fullMessage);
@@ -17,9 +18,16 @@ function addMessage(user, message) {
     });
 }
 
-function getMessages(filterUser) {
+function getMessages(chatFilter, userFilter) {
     return new Promise((resolve, reject) => {
-        resolve(storage.get(filterUser));
+        let filter = {};
+        if(chatFilter) {
+            filter.chat = chatFilter;
+        }
+        if(userFilter) {
+            filter.user = userFilter;
+        }
+        resolve(storage.get(filter));
     });
 }
 

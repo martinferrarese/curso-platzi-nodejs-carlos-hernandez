@@ -5,9 +5,8 @@ const service = require('./message-service');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const filterMessage = req.query.user || null;
     try {
-        const messageList = await service.getMessages(filterMessage);
+        const messageList = await service.getMessages(req.body.chat, req.body.user);
         response.success(req, res, messageList, 200);
     } catch (error) {
         console.log(error);
@@ -17,7 +16,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const fullMessage = await service.addMessage(req.body.user, req.body.message);
+        const fullMessage = await service.addMessage(req.body.chat, req.body.user, req.body.message);
         response.success(req, res, fullMessage, 200);
     }catch(error) {
         console.log(error);
