@@ -1,6 +1,6 @@
 const storage = require('./message-storage');
 
-function addMessage(chat, user, message) {
+function addMessage(chat, user, message, file) {
     return new Promise((resolve, reject) => {
         if(!chat || !user || !message) {
             console.log(`[message-service] - No contiene chat, user o message`);
@@ -11,7 +11,11 @@ function addMessage(chat, user, message) {
                 user: user,
                 message: message,
                 date: new Date(),
+                file: '',
             };
+            if(file) {
+                fullMessage.file = `http://localhost:3000/app/files/${file.filename}`;
+            }
             storage.add(fullMessage);
             resolve(fullMessage);
         }

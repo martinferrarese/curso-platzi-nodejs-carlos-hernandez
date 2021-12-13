@@ -5,7 +5,7 @@ const service = require('./message-service');
 
 const router = express.Router();
 const uploader = multer({
-    dest: 'files/'
+    dest: 'public/files/'
 })
 
 router.get('/', async (req, res) => {
@@ -20,10 +20,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', uploader.single('file'), async (req, res) => {
     try {
-        let fullMessage = await service.addMessage(req.body.chat, req.body.user, req.body.message);
-        if(req.file) {
-            fullMessage.file = req.file.filename;
-        }
+        let fullMessage = await service.addMessage(req.body.chat, req.body.user, req.body.message, req.file);
         response.success(req, res, fullMessage, 200);
     }catch(error) {
         console.log(error);
