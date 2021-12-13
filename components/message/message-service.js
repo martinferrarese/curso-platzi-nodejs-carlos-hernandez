@@ -6,7 +6,7 @@ function addMessage(chat, user, message) {
             console.log(`[message-service] - No contiene chat, user o message`);
             reject(`Los datos son incorrectos`);
         } else {
-            const fullMessage = {
+            let fullMessage = {
                 chat: chat,
                 user: user,
                 message: message,
