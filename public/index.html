@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang='es'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Socket para el chat</title>
     <head>
         <link rel="stylesheet" href="styles.css"></link>
+        <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
-        Esto
+        <h1>Conectado, pah</h1>
+        <script>
+            var socket = io.connect('http://localhost:8080', {
+                forceNew: true,
+            });
+            socket.on('mensaje', function(data) {
+                console.log(data);
+            });
+        </script>
     </body>
 </html>
