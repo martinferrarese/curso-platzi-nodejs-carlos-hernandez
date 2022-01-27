@@ -10,13 +10,23 @@ const uploader = multer({
 
 router.get('/', async (req, res) => {
     try {
-        const messageList = await service.getMessages(req.body.chat, req.body.user);
+        const messageList = await service.getMessages(req.query.chat, req.body.user);
         response.success(req, res, messageList, 200);
     } catch (error) {
         console.log(error);
         response.failure(req, res, `[GET] Message - ${error} - No se pudieron obtener los mensajes`, 500);
     }
-})
+});
+
+router.get('/:idChat', async (req, res) => {
+    try {
+        const messageList = await service.getMessages(req.params.idChat);
+        response.success(req, res, messageList, 200);
+    } catch (error) {
+        console.log(error);
+        response.failure(req, res, `[GET] Message - ${error} - No se pudieron obtener los mensajes`, 500);
+    }
+});
 
 router.post('/', uploader.single('file'), async (req, res) => {
     try {

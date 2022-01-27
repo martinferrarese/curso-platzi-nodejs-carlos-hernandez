@@ -1,4 +1,5 @@
 const storage = require('./message-storage');
+const socket = require('../../socket').socket;
 
 function addMessage(chat, user, message, file) {
     return new Promise((resolve, reject) => {
@@ -17,6 +18,7 @@ function addMessage(chat, user, message, file) {
                 fullMessage.file = `http://localhost:3000/app/files/${file.filename}`;
             }
             storage.add(fullMessage);
+            socket.io.emit('messages', fullMessage);
             resolve(fullMessage);
         }
     });
